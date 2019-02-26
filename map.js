@@ -6,7 +6,36 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY25zMjE0MSIsImEiOiJjanNtZW5veWowMHM5NDRtcnRzY
 
 let map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v10',
+    style: 'mapbox://styles/cns2141/cjsmezqys51u91fmry04cjvt7',
     center: [-73.96024, 40.80877],
-    zoom: 1
+    zoom: 16
+})
+
+let navigation = new mapboxgl.NavigationControl({
+    showCompass: false
+})
+
+map.addControl(navigation, 'top-left')
+
+let scale = new mapboxgl.ScaleControl({
+    maxWidth: 80,
+    unit: 'imperial'
+})
+
+map.addControl(scale, 'bottom-right')
+
+let geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserLocation: true,
+    fitBoundsOptions: {
+    }
+})
+
+map.addControl(geolocate, 'top-left')
+
+geolocate.on('geolocate', function(event) {
+    console.log(event.coords)
 })
