@@ -37,5 +37,12 @@ let geolocate = new mapboxgl.GeolocateControl({
 map.addControl(geolocate, 'top-left')
 
 geolocate.on('geolocate', function(event) {
-    console.log(event.coords)
+
+    let lng = event.coords.longitude
+    let lat = event.coords.latitude
+
+    console.log('geolocated:', lng, lat)
+
+    document.getElementById('info').innerHTML = lng.toFixed(5) + "," + lat.toFixed(5)
+
 })
